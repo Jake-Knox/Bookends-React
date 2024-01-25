@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
 
-// Set base URL for Axios requests
-axios.defaults.baseURL = 'http://localhost:5000';
+} from 'react-router-dom';
+
+import LoginPage from './components/LoginPage';
+import Dashboard from './components/Dashboard';
+
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.post('/api/test');
-      console.log(response);
-      setMessage(response.data.message);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
   return (
-    <div>
-      <button onClick={fetchData}>Fetch Data</button>
-      <p>{message}</p>
-    </div>
+    <Router>
+      <div className='App'>
+        <Routes>
+          {/* in V6, need to use element instead of component */}
+          <Route path="/" element={<LoginPage />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

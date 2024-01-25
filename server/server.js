@@ -21,6 +21,8 @@ mongoose.connect(MONGODB_URI, {
 })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
+mongoose.set('debug', true);
+
 
 // User Schema
 const UserSchema = new mongoose.Schema({
@@ -42,6 +44,7 @@ app.post('/api/test', async (req, res) => {
 
 // Register endpoint
 app.post('/api/register', async (req, res) => {
+    console.log("register request");
     try {
         const { username, password } = req.body;
 
@@ -62,11 +65,12 @@ app.post('/api/register', async (req, res) => {
 
 // Login endpoint
 app.post('/api/login', async (req, res) => {
+    console.log("login request");
     try {
         const { username, password } = req.body;
-
+        console.log(`${username}, ${password}`);
         const user = await User.findOne({ username });
-
+        console.log(user);
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
@@ -87,6 +91,7 @@ app.post('/api/login', async (req, res) => {
 
 // Change password endpoint
 app.put('/api/change-password', async (req, res) => {
+    console.log("change pw request");
     try {
         const { username, oldPassword, newPassword } = req.body;
 

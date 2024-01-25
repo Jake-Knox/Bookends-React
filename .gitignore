@@ -1,3 +1,6 @@
+# Ignore root level files
+users.txt
+
 # Ignore node_modules directory in the frontend folder
 frontend/node_modules/
 
