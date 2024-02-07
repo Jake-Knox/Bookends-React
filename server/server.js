@@ -5,10 +5,12 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
 const config = require('./config');
+const jwt = require('jsonwebtoken');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = config.PORT || 5000;
 const uri = config.MONGODB_URI;
+const jwtSecretKey = config.jwtSecretKey;
 
 // Middleware
 app.use(bodyParser.json());
@@ -71,6 +73,7 @@ client.connect()
                     console.error('Error finding user:', err);
                     res.sendStatus(500);
                 } else if (!user) {
+                    console.log("User not found");
                     res.status(401).json({ message: 'User not found' });
                 } else {
                     // Compare the provided password with the hashed password stored in the user object
@@ -80,15 +83,17 @@ client.connect()
                             res.sendStatus(500);
                         } else if (result) {
                             // Passwords match, authentication successful
-                            // req.session.isLoggedIn = true;
-                            // req.session.username = username;
-                            // console.log('isLoggedIn:', req.session.isLoggedIn);
-                            // console.log('username:', req.session.username);
-                            res.status(200).json({ message: 'Authentication successful' });
-                            // res.redirect('/profile'); // redirected from login.js       
+                            console.log('Passwords match');
+
+                            console.log(`un:${user.username}, _id:${user._id}`);
+                            const token = jwt.sign({ username: user.username, _id: user._id }, jwtSecretKey);
+
+                            // send status response and token
+                            res.status(200).json({ message: 'Authentication successful', token });
                         } else {
                             // Passwords do not match, authentication failed
-                            res.status(401).json({ message: 'Invalid username or password' });
+                            console.log(`Incorrect Password`);
+                            res.status(401).json({ message: 'Incorrect Password' });
                         }
                     });
                 }

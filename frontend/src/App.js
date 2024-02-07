@@ -26,7 +26,7 @@ function App() {
 
             {/* Protected Routes */}
             <Route exact path='/dashboard' element={<ProtectedRoute />}>
-              <Route exact path='/dashboard' element={<Dashboard />} />
+              <Route index element={<Dashboard />} />
             </Route>
           </Routes>
         </div>

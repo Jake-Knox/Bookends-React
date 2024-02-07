@@ -1,5 +1,7 @@
 // LoginPage.js
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthProvider';
+import { Link } from 'react-router-dom'
 
 import axios from 'axios';
 
@@ -7,6 +9,8 @@ import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:5000';
 
 function LoginPage() {
+    const { login, logout } = useAuth();
+
     const [message, setMessage] = useState('');
     const [message2, setMessage2] = useState('');
 
@@ -37,13 +41,20 @@ function LoginPage() {
         e.preventDefault();
         try {
             const response = await axios.post('/api/login', { username, password });
+            const { token } = response.data;
             console.log('Login response:', response.data);
-            // Here you can handle successful login, e.g., redirect to dashboard
+
+            login(token, username); // Pass the token to the login function
+
         } catch (error) {
-            console.error('Login error:', error);
+            console.error('Login error:', error.response.data);
             // Here you can handle login errors, e.g., display error message
         }
     };
+
+    const logoutClick = async () => {
+        logout();
+    }
 
 
     return (
@@ -77,9 +88,11 @@ function LoginPage() {
                     />
                 </div>
                 <button type="submit">Login</button>
-                <button onClick={() => window.location.href = '/dashboard'}>
-                    Go to Dashboard
-                </button>            </form>
+            </form>
+            <button onClick={logoutClick}>Log out</button>
+            <Link to={'/dashboard'}>
+                <li>Dashboard</li>
+            </Link>
         </div>
     );
 }
