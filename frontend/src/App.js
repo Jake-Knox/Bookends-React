@@ -9,18 +9,29 @@ import {
 import LoginPage from './components/LoginPage';
 import Dashboard from './components/Dashboard';
 
+import ProtectedRoute from './utils/ProtectedRoute';
+import { AuthProvider } from './context/AuthProvider';
+
+// To learn about auth with react
+// https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5
 
 function App() {
   return (
-    <Router>
-      <div className='App'>
-        <Routes>
-          {/* in V6, need to use element instead of component */}
-          <Route path="/" element={<LoginPage />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className='App'>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<LoginPage />}></Route>
+
+            {/* Protected Routes */}
+            <Route exact path='/dashboard' element={<ProtectedRoute />}>
+              <Route exact path='/dashboard' element={<Dashboard />} />
+            </Route>
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

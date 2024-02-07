@@ -77,7 +77,9 @@ function LoginPage() {
                     />
                 </div>
                 <button type="submit">Login</button>
-            </form>
+                <button onClick={() => window.location.href = '/dashboard'}>
+                    Go to Dashboard
+                </button>            </form>
         </div>
     );
 }
