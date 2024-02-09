@@ -6,6 +6,7 @@ import {
 
 } from 'react-router-dom';
 
+import Home from './pages/Home';
 import LoginPage from './components/LoginPage';
 import Dashboard from './components/Dashboard';
 
@@ -20,9 +21,12 @@ function App() {
     <AuthProvider>
       <Router>
         <div className='App'>
+          {/* Navbar here */}
+
           <Routes>
             {/* Public Routes */}
-            <Route path="/" element={<LoginPage />}></Route>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/login" element={<LoginPage />}></Route>
 
             {/* Protected Routes */}
             <Route exact path='/dashboard' element={<ProtectedRoute />}>
