@@ -42,7 +42,7 @@ function LoginPage() {
         try {
             const response = await axios.post('/api/login', { username, password });
             const { token } = response.data;
-            console.log('Login response:', response.data);
+            // console.log('Login response:', response.data);
 
             login(token, username); // Pass the token to the login function
 

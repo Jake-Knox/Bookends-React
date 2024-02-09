@@ -8,6 +8,7 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
 
     authCheck();
 
+    // https://medium.com/@chiragmehta900/creating-protected-routes-in-react-js-with-react-router-v6-28f3a3ac53d
     return (
         isAuthenticated ? <Outlet /> : <Navigate to="/" replace />
     )
