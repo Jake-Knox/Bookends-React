@@ -1,6 +1,6 @@
 // PrivateRoute.js
 import React from 'react';
-import { Outlet, Navigate, Route } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthProvider';
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {

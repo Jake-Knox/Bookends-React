@@ -7,8 +7,10 @@ import {
 } from 'react-router-dom';
 
 import Home from './pages/Home';
-import LoginPage from './components/LoginPage';
-import Dashboard from './components/Dashboard';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import LoginPage from './pages/LoginPage';
+import Dashboard from './pages/Dashboard';
 
 import ProtectedRoute from './utils/ProtectedRoute';
 import { AuthProvider } from './context/AuthProvider';
@@ -21,18 +23,20 @@ function App() {
     <AuthProvider>
       <Router>
         <div className='App'>
-          {/* Navbar here */}
+          <Navbar />
 
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
 
-            {/* Protected Routes */}
             <Route exact path='/dashboard' element={<ProtectedRoute />}>
+              {/* Protected Routes */}
               <Route index element={<Dashboard />} />
             </Route>
           </Routes>
+
+          <Footer />
         </div>
       </Router>
     </AuthProvider>
