@@ -9,6 +9,9 @@ function Home() {
             <Link to={'/login'}>
                 <li>Login</li>
             </Link>
+            <Link to={'/bookshelf/janeAusten1'}>
+                <li>janeAusten1's bookshelf</li>
+            </Link>
         </div>
     );
 }

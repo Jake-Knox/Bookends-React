@@ -11,6 +11,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
+import Bookshelf from './pages/Bookshelf';
 
 import ProtectedRoute from './utils/ProtectedRoute';
 import { AuthProvider } from './context/AuthProvider';
@@ -29,6 +30,7 @@ function App() {
             {/* Public Routes */}
             <Route path="/" element={<Home />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
+            <Route exact path="/bookshelf/:username" element={<Bookshelf />}></Route>
 
             <Route exact path='/dashboard' element={<ProtectedRoute />}>
               {/* Protected Routes */}
