@@ -1,0 +1,39 @@
+.footer {
+
+    box-sizing: border-box;
+
+    background-color: #333;
+    /* Background color */
+    color: #fff;
+    /* Text color */
+    padding: 20px;
+    /* Padding */
+    text-align: center;
+    /* Center-align text */
+    width: 100%;
+    /* Full width */
+    position: absolute;
+    /* Absolute positioning */
+    bottom: 0;
+    /* Stick to the bottom */
+}
+
+.footer p {
+    margin: 0;
+    /* Remove default margin for paragraphs */
+}
+
+/* Additional styling for links in the footer */
+.footer a {
+    color: #fff;
+    /* Text color for links */
+    text-decoration: none;
+    /* Remove underline */
+    transition: color 0.3s ease;
+    /* Smooth transition for color change */
+}
+
+.footer a:hover {
+    color: #ccc;
+    /* Change color on hover */
+}

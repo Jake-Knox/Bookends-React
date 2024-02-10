@@ -1,0 +1,80 @@
+/* LoginForm.scss */
+
+.LoginForm {
+    max-width: 400px;
+    /* Set maximum width for the login form */
+    margin: 0 auto;
+    /* Center the login form horizontally */
+    padding: 20px;
+    /* Add padding */
+    border: 1px solid #ccc;
+    /* Add border */
+    border-radius: 5px;
+    /* Add border radius */
+    background-color: #f9f9f9;
+    /* Background color */
+}
+
+.LoginForm form {
+    display: flex;
+    flex-direction: column;
+}
+
+.LoginForm label {
+    margin-bottom: 5px;
+    /* Add spacing below labels */
+}
+
+.LoginForm input {
+    padding: 8px;
+    /* Add padding for inputs */
+    margin-bottom: 10px;
+    /* Add spacing between inputs */
+    border: 1px solid #ccc;
+    /* Add border */
+    border-radius: 3px;
+    /* Add border radius */
+}
+
+.LoginForm button {
+    padding: 10px 15px;
+    /* Add padding for buttons */
+    background-color: #007bff;
+    /* Button background color */
+    color: #fff;
+    /* Button text color */
+    border: none;
+    /* Remove button border */
+    border-radius: 3px;
+    /* Add button border radius */
+    cursor: pointer;
+    /* Add pointer cursor */
+}
+
+.LoginForm button:hover {
+    background-color: #0056b3;
+    /* Button background color on hover */
+}
+
+/* Style for logout button */
+.LoginForm button.logout-button {
+    margin-top: 10px;
+    /* Add spacing between buttons */
+}
+
+/* Style for dashboard link */
+.LoginForm li {
+    list-style: none;
+    /* Remove default list style */
+    margin-top: 10px;
+    /* Add spacing between list items */
+    color: #007bff;
+    /* Link text color */
+    cursor: pointer;
+    /* Add pointer cursor */
+}
+
+.LoginForm li:hover {
+    text-decoration: underline;
+    /* Underline link on hover */
+}

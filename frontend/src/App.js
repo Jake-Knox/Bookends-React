@@ -6,6 +6,8 @@ import {
 
 } from 'react-router-dom';
 
+import './App.scss';
+
 import Home from './pages/Home';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
