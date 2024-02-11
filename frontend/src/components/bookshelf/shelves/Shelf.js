@@ -1,10 +1,12 @@
 // Dashboard.js
 import React from 'react';
+import Book from './Book';
 
 function Shelf() {
     return (
         <div>
-            <h2>Shelf</h2>
+            <h3>Shelf with one test book</h3>
+            <Book />
         </div>
     );
 }

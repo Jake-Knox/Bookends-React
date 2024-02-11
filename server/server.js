@@ -110,61 +110,6 @@ client.connect()
     });
 
 
-
-
-
-// Register endpoint
-app.post('/api/register', async (req, res) => {
-    console.log("register request");
-    try {
-        const { username, password } = req.body;
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        const newUser = new User({
-            username,
-            password: hashedPassword,
-        });
-
-        await newUser.save();
-
-        res.status(201).json({ message: 'User registered successfully' });
-    } catch (error) {
-        res.status(500).json({ error: 'Error registering user' });
-    }
-});
-
-
-
-// Change password endpoint
-app.put('/api/change-password', async (req, res) => {
-    console.log("change pw request");
-    try {
-        const { username, oldPassword, newPassword } = req.body;
-
-        const user = await User.findOne({ username });
-
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-
-        const validPassword = await bcrypt.compare(oldPassword, user.password);
-
-        if (!validPassword) {
-            return res.status(401).json({ error: 'Invalid password' });
-        }
-
-        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
-
-        user.password = hashedNewPassword;
-        await user.save();
-
-        res.json({ message: 'Password changed successfully' });
-    } catch (error) {
-        res.status(500).json({ error: 'Error changing password' });
-    }
-});
-
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

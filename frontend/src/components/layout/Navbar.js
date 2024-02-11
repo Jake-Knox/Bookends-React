@@ -11,6 +11,8 @@ const Navbar = () => {
     return (
         <nav className='navbar'>
             <img
+                className=''
+                src='/bookends-logo-tr.png'
                 alt="Logo"
             />
             <ul className='navbar'>
