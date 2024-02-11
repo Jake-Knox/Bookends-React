@@ -100,6 +100,86 @@ client.connect()
             });
         });
 
+        // app.get('/getMyBookhelf', isAuthenticated, (req, res) => {
+        //     // console.log("get my books request")
+
+        //     let username = req.session.username
+        //     // fix this
+        //     // will cause errors
+
+        //     // find the username in the books collection
+        //     // send the shelf (and book) data back to the user
+        //     db.collection('users').findOne({ username }, (err, user) => {
+        //         if (err) {
+        //             console.error('Error finding user:', err);
+        //             res.sendStatus(500);
+        //         } else if (!user) {
+        //             console.log("user not found");
+        //             res.status(401).json({ message: 'User not found' });
+        //         } else {
+        //             // User found, send data
+        //             // console.log("data found");
+        //             // console.log(user);
+
+        //             const userData = {
+        //                 username: user.username,
+        //                 following: user.following,
+        //                 followers: user.followers,
+        //                 books: user.books,
+        //                 shelves: user.shelves,
+        //             }
+
+        //             res.status(200).json({ data: userData });
+        //         }
+        //     });
+        // });
+
+        app.get('/getUserBookshelf/:username', (req, res) => {
+            // console.log("get user books request");
+            const username = req.params.username;
+            console.log(`getUserBookshelf:${username}`);
+
+            // REMEMBER CHECKS FOR PRIVACY
+
+            db.collection('users').findOne({ username }, (err, user) => {
+                if (err) {
+                    console.error('Error finding user:', err);
+                    res.sendStatus(500);
+                } else if (!user) {
+                    console.log("user not found");
+                    res.status(401).json({ message: 'User not found' });
+                } else {
+                    // User found, send data
+                    let bookshelfData = {
+                        username: user.username,
+                        privacy: user.privacy,
+                        following: [],
+                        followers: [],
+                        shelves: [],
+                    }
+
+                    if (user.privacy == "public") {
+                        console.log("profile is public");
+                        bookshelfData.following = user.following;
+                        bookshelfData.followers = user.followers;
+
+                        for (let i = 0; i < user.shelves.length; i++) {
+                            if (user.shelves[i].privacy == "public") {
+                                bookshelfData.shelves.push(user.shelves[i]);
+                            }
+                        }
+                    }
+                    else {
+                        console.log("profile is private");
+                    }
+                    // for each shelf - only add public shelves to bookshelfData.shelves array
+                    res.status(200).json({ bookshelf: bookshelfData });
+                }
+            });
+        });
+
+
+
 
 
 

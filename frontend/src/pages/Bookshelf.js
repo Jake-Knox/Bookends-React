@@ -25,8 +25,16 @@ function Bookshelf() {
     useEffect(() => {
         const fetchBookshelfData = async () => {
             try {
-                const response = await axios.get(`/api/bookshelf/${username}`);
-                setBookshelfData(response.data);
+                const response = await axios.get(`/getUserBookshelf/${username}`);
+                // response from server
+                if (response.status === 200) {
+                    console.log(response.data)
+                    setBookshelfData(response.data.bookshelf);
+                }
+                else {
+                    console.error('Error in response getting user bookshelf:', response.statusText);
+                    // No User Found
+                }
             } catch (error) {
                 console.error('Error fetching bookshelf data:', error);
             }
