@@ -2,11 +2,19 @@
 import React from 'react';
 import Book from './Book';
 
-function Shelf() {
+import './shelf.scss';
+
+function Shelf({ name, shelfBooks }) {
     return (
-        <div>
-            <h3>Shelf with one test book</h3>
-            <Book />
+        <div className='shelf'>
+            <h3>{name}</h3>
+            {shelfBooks.map(book => (
+                <Book
+                    key={book._id}
+                    title={book.title}
+                    author={book.author}
+                />
+            ))}
         </div>
     );
 }

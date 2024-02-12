@@ -1,10 +1,12 @@
 // Dashboard.js
 import React from 'react';
 
-function Book() {
+import './book.scss'
+
+function Book({ title, author }) {
     return (
-        <div>
-            <h4>Book</h4>
+        <div className='book'>
+            <p>{author}, {title}</p>
         </div>
     );
 }

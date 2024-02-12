@@ -11,7 +11,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:5000';
 
 function Bookshelf() {
-    const { isAuthenticated, user, token } = useAuth(); // the logged in user
+    const { user, token } = useAuth(); // the logged in user
     const { username } = useParams(); // the bookshelf owner/creator
 
     // fill in these state fields as needed/expected
@@ -66,7 +66,7 @@ function Bookshelf() {
             };
             fetchBookshelfData();
         }
-    }, [username]); // Run the effect whenever the username prop changes
+    }, [username, user, token]); // Run the effect whenever the username prop changes
 
 
     return (
