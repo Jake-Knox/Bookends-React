@@ -1,21 +1,18 @@
 .footer {
 
     box-sizing: border-box;
-
     background-color: #333;
-    /* Background color */
     color: #fff;
-    /* Text color */
     padding: 20px;
-    /* Padding */
     text-align: center;
-    /* Center-align text */
     width: 100%;
-    /* Full width */
-    position: absolute;
-    /* Absolute positioning */
+    // position: fixed;
+    left: 0;
     bottom: 0;
-    /* Stick to the bottom */
+
+    flex-shrink: 0;
+    /* Prevent footer from shrinking */
+
 }
 
 .footer p {

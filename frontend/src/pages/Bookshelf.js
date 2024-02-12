@@ -7,6 +7,8 @@ import Shelf from '../components/bookshelf/shelves/Shelf';
 import AddShelf from '../components/bookshelf/AddShelf';
 import BookSearch from '../components/bookshelf/BookSearch';
 
+import './bookshelf.scss'
+
 import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:5000';
 
@@ -70,7 +72,7 @@ function Bookshelf() {
 
 
     return (
-        <div>
+        <div className='bookshelf'>
             <h2>{username}'s Bookshelf</h2>
             {user ? <p>Hello, {user}</p> : <p>Hello, anon</p>}
 
