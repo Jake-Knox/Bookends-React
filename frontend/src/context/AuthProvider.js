@@ -47,6 +47,16 @@ export const AuthProvider = ({ children }) => {
         // console.log(`token:${token}`);
     }
 
+    // const getIsAuthenticated = () => {
+    //     return isAuthenticated;
+    // }
+    // const getUser = () => {
+    //     return user;
+    // }
+    // const getToken = () => {
+    //     return token;
+    // }
+
     return (
         <AuthContext.Provider value={{ isAuthenticated, user, token, login, logout, authCheck }}>
             {children}

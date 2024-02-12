@@ -11,7 +11,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:5000';
 
 function Bookshelf() {
-    const { user } = useAuth(); // the logged in user
+    const { isAuthenticated, user, token } = useAuth(); // the logged in user
     const { username } = useParams(); // the bookshelf owner/creator
 
     // fill in these state fields as needed/expected
@@ -23,23 +23,49 @@ function Bookshelf() {
 
     // fetch user bookshelf data for rendering
     useEffect(() => {
-        const fetchBookshelfData = async () => {
-            try {
-                const response = await axios.get(`/getUserBookshelf/${username}`);
-                // response from server
-                if (response.status === 200) {
-                    console.log(response.data)
-                    setBookshelfData(response.data.bookshelf);
+        // viewing their own bookshelf
+        if (user === username) {
+            const fetchBookshelfData = async () => {
+                try {
+                    const response = await axios.get(`/getMyBookhelf`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                    // response from server
+                    if (response.status === 200) {
+                        console.log(response.data)
+                        setBookshelfData(response.data.bookshelf);
+                    }
+                    else {
+                        console.error('Error in response getting user bookshelf:', response.statusText);
+                        // No User Found
+                    }
+                } catch (error) {
+                    console.error('Error fetching bookshelf data:', error);
                 }
-                else {
-                    console.error('Error in response getting user bookshelf:', response.statusText);
-                    // No User Found
+            };
+            fetchBookshelfData();
+        } else {
+            // viewing another user's bookshelf/ not logged in
+            const fetchBookshelfData = async () => {
+                try {
+                    const response = await axios.get(`/getUserBookshelf/${username}`);
+                    // response from server
+                    if (response.status === 200) {
+                        console.log(response.data)
+                        setBookshelfData(response.data.bookshelf);
+                    }
+                    else {
+                        console.error('Error in response getting user bookshelf:', response.statusText);
+                        // No User Found
+                    }
+                } catch (error) {
+                    console.error('Error fetching bookshelf data:', error);
                 }
-            } catch (error) {
-                console.error('Error fetching bookshelf data:', error);
-            }
-        };
-        fetchBookshelfData();
+            };
+            fetchBookshelfData();
+        }
     }, [username]); // Run the effect whenever the username prop changes
 
 
@@ -47,6 +73,9 @@ function Bookshelf() {
         <div>
             <h2>{username}'s Bookshelf</h2>
             {user ? <p>Hello, {user}</p> : <p>Hello, anon</p>}
+
+            <BookSearch />
+
             <div className='shelves'>
                 {bookshelfData.shelves.map(shelf => (
                     <Shelf
@@ -56,6 +85,8 @@ function Bookshelf() {
                     />
                 ))}
             </div>
+
+            <AddShelf />
         </div>
     );
 }
