@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthProvider';
 import { useParams } from 'react-router-dom';
 
-import Shelf from '../components/bookshelf/shelves/Shelf';
-import AddShelf from '../components/bookshelf/AddShelf';
+
 import BookSearch from '../components/bookshelf/BookSearch';
+import Shelves from '../components/bookshelf/shelves/Shelves';
+import AddShelf from '../components/bookshelf/AddShelf';
 
 import './bookshelf.scss'
 
@@ -21,7 +22,8 @@ function Bookshelf() {
         shelves: [],
         privacy: '',
     });
-
+    // privacy in this case is the privacy of the page/bookshelf
+    // seperate from any individual shelves
 
     // fetch user bookshelf data for rendering
     useEffect(() => {
@@ -72,21 +74,13 @@ function Bookshelf() {
 
 
     return (
-        <div className='bookshelf'>
+        <div className='page bookshelf'>
             <h2>{username}'s Bookshelf</h2>
             {user ? <p>Hello, {user}</p> : <p>Hello, anon</p>}
 
             <BookSearch />
 
-            <div className='shelves'>
-                {bookshelfData.shelves.map(shelf => (
-                    <Shelf
-                        key={shelf._id}
-                        name={shelf.name}
-                        shelfBooks={shelf.books}
-                    />
-                ))}
-            </div>
+            <Shelves shelves={bookshelfData.shelves} />
 
             <AddShelf />
         </div>

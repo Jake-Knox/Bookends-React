@@ -114,9 +114,8 @@ client.connect()
 
         app.get('/getMyBookhelf', authenticateToken, (req, res) => {
             // console.log("get my books request")
-
             const username = req.user
-            console.log(username)
+            console.log(`getMyBookshelf:${username} (me)`);
 
             // find the username in the books collection
             // send the shelf (and book) data back to the user
@@ -150,8 +149,6 @@ client.connect()
             const username = req.params.username;
             console.log(`getUserBookshelf:${username}`);
 
-            // REMEMBER CHECKS FOR PRIVACY
-
             db.collection('users').findOne({ username }, (err, user) => {
                 if (err) {
                     console.error('Error finding user:', err);
@@ -183,7 +180,6 @@ client.connect()
                     else {
                         // console.log("profile is private");
                     }
-                    // for each shelf - only add public shelves to bookshelfData.shelves array
                     res.status(200).json({ bookshelf: bookshelfData });
                 }
             });

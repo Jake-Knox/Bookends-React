@@ -33,7 +33,7 @@ function LoginPage() {
     };
 
     return (
-        <div>
+        <div className='page login'>
             <h2>Login Page</h2>
             <button onClick={fetchData}>Fetch Test Data</button>
             <p>{message}</p>

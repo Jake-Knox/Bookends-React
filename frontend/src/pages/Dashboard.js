@@ -8,7 +8,7 @@ function Dashboard() {
 
 
     return (
-        <div>
+        <div className='page dashboard'>
             <h2>Dashboard</h2>
             <h3>Hello {user}</h3>
         </div>

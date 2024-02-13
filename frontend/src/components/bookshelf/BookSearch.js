@@ -1,9 +1,11 @@
 // Dashboard.js
 import React from 'react';
 
+import './bookSearch.scss'
+
 function BookSearch() {
     return (
-        <div>
+        <div className='bookSearch'>
             <h2>BookSearch</h2>
         </div>
     );

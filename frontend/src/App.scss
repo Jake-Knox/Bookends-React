@@ -4,6 +4,11 @@
   flex-direction: column;
   min-height: 100vh;
   /* Ensure wrapper takes up at least full viewport height */
+
+
+  .page {
+    flex-grow: 1;
+  }
 }
 
 .App-header {

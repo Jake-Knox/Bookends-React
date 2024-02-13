@@ -4,10 +4,10 @@ import Book from './Book';
 
 import './shelf.scss';
 
-function Shelf({ name, shelfBooks }) {
+function Shelf({ name, privacy, shelfBooks }) {
     return (
         <div className='shelf'>
-            <h3>{name}</h3>
+            <h3>{name}, {privacy}</h3>
             {shelfBooks.map(book => (
                 <Book
                     key={book._id}
