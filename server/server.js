@@ -133,6 +133,7 @@ client.connect()
 
                     const bookshelfData = {
                         username: user.username,
+                        privacy: user.privacy,
                         following: user.following,
                         followers: user.followers,
                         books: user.books,

@@ -20,7 +20,6 @@ function Bookshelf() {
     // fill in these state fields as needed/expected
     const [bookshelfData, setBookshelfData] = useState({
         shelves: [],
-        privacy: '',
     });
     // privacy in this case is the privacy of the page/bookshelf
     // seperate from any individual shelves
@@ -86,7 +85,11 @@ function Bookshelf() {
             <h2>{username}'s Bookshelf</h2>
             {user ? <p>Hello, {user}</p> : <p>Hello, anon</p>}
 
-            <Follows />
+            <Follows
+                privacy={bookshelfData.privacy}
+                following={bookshelfData.following}
+                followers={bookshelfData.followers}
+            />
 
             <BookSearch />
 

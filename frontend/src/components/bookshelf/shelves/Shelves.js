@@ -2,6 +2,8 @@
 import React from 'react';
 import Shelf from './Shelf';
 
+import './shelves.scss';
+
 function Shelves({ shelves }) {
     return (
         <div className='shelves'>

@@ -3,21 +3,14 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
   /* Ensure wrapper takes up at least full viewport height */
-
-
   .page {
+    // .page given to div of any file in pages directory 
     flex-grow: 1;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  li {
+    list-style-type: none;
+  }
 }
