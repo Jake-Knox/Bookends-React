@@ -1,6 +1,29 @@
 .book {
     border: 1px solid #862626;
-    padding: 10px;
-    margin-bottom: 20px;
-    /* Add more styles as needed */
+
+    height: 300px;
+    width: 100px;
+    // flex: 1;
+
+    .bookFront {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            align-self: flex-start;
+        }
+
+        img {
+            align-self: flex-end;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .bookSeide {
+        rotate: calc(90);
+    }
 }

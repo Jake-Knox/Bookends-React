@@ -1,6 +1,20 @@
 .shelf {
     border: 1px solid #3fbe33;
-    padding: 10px;
     margin-bottom: 20px;
-    /* Add more styles as needed */
+    width: 100%;
+    height: 100%;
+
+    .shelfBooks {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        border: 2px solid blue;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
 }

@@ -6,7 +6,7 @@ import './follows.scss';
 
 function Follows({ privacy, following, followers }) {
 
-    let userTest = "testUser";
+    const userTest = "testUser";
 
     return (
         <div className='follows'>
@@ -14,14 +14,15 @@ function Follows({ privacy, following, followers }) {
             <div>
                 {privacy === "public" ?
                     <div>
-                        <Link to={`/following/${userTest}`}> <p>Following:{following.length}</p></Link>
-                        <Link to={`/followers/${userTest}`}> <p>Followers:{followers.length}</p></Link>
+                        <Link to={`/following/${userTest}`}> <p>Following:{following?.length || 0}</p></Link>
+                        <Link to={`/followers/${userTest}`}> <p>Followers:{followers?.length || 0}</p></Link>
                     </div>
                     :
                     <div>
-                        <p>Following:{following.length}</p>
-                        <p>Followers:{followers.length}</p>
-                    </div>}
+                        <p>Following:{following?.length || 0}</p>
+                        <p>Followers:{followers?.length || 0}</p>
+                    </div>
+                }
             </div>
         </div>
     );
