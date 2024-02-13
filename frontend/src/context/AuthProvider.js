@@ -1,5 +1,6 @@
 // AuthProvider.js
 import React, { createContext, useContext, useState } from 'react';
+import { jwtDecode } from "jwt-decode";
 
 import { parseCookie } from '../utils/cookieUtils';
 
@@ -14,7 +15,10 @@ export const AuthProvider = ({ children }) => {
         // Initialize token from cookie if available
         const token = parseCookie('token');
         if (token) {
+            const decodedToken = jwtDecode(token);
+
             setIsAuthenticated(true);
+            setUser(decodedToken.username);
             return token;
         }
         return null;

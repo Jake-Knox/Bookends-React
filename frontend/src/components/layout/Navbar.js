@@ -1,4 +1,6 @@
 import React from 'react';
+import { useAuth } from '../../context/AuthProvider';
+
 import { Link } from 'react-router-dom';
 
 import './Navbar.scss'
@@ -8,6 +10,8 @@ import './Navbar.scss'
 // note - the list items are hidden from right->left as screen size decreses. News is last.
 
 const Navbar = () => {
+    const { isAuthenticated } = useAuth(); // the logged in user
+
     return (
         <nav className='navbar'>
             <img
@@ -22,9 +26,15 @@ const Navbar = () => {
                 <li>
                     <Link to="/dashboard">Dashboard</Link>
                 </li>
-                <li>
-                    <Link to="/login">Login</Link>
-                </li>
+                {isAuthenticated ?
+                    <li>
+                        <Link to="/login">Logout</Link>
+                    </li>
+                    :
+                    <li>
+                        <Link to="/login">Login</Link>
+                    </li>
+                }
             </ul>
         </nav>
     );

@@ -58,8 +58,9 @@ const LoginForm = () => {
                     />
                 </div>
                 <button type="submit">Login</button>
-                <button className='logout-button' onClick={logoutClick}>Log out</button>
             </form>
+            <button className='logout-button' onClick={logoutClick}>Log out</button>
+
             <Link to={'/dashboard'}>
                 <li>Dashboard</li>
             </Link>

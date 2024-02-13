@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthProvider';
 import { useParams } from 'react-router-dom';
 
-
+import Follows from '../components/bookshelf/Follows';
 import BookSearch from '../components/bookshelf/BookSearch';
 import Shelves from '../components/bookshelf/shelves/Shelves';
 import AddShelf from '../components/bookshelf/AddShelf';
@@ -14,7 +14,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:5000';
 
 function Bookshelf() {
-    const { user, token } = useAuth(); // the logged in user
+    const { isAuthenticated, user, token } = useAuth(); // the logged in user
     const { username } = useParams(); // the bookshelf owner/creator
 
     // fill in these state fields as needed/expected
@@ -28,6 +28,14 @@ function Bookshelf() {
     // fetch user bookshelf data for rendering
     useEffect(() => {
         // viewing their own bookshelf
+
+        if (isAuthenticated) {
+            console.log("user is authenticated");
+        }
+        else {
+            console.log("not authed");
+        }
+
         if (user === username) {
             const fetchBookshelfData = async () => {
                 try {
@@ -70,13 +78,15 @@ function Bookshelf() {
             };
             fetchBookshelfData();
         }
-    }, [username, user, token]); // Run the effect whenever the username prop changes
+    }, [username, user, token, isAuthenticated]); // Run the effect whenever the username prop changes
 
 
     return (
         <div className='page bookshelf'>
             <h2>{username}'s Bookshelf</h2>
             {user ? <p>Hello, {user}</p> : <p>Hello, anon</p>}
+
+            <Follows />
 
             <BookSearch />
 
