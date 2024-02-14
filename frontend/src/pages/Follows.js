@@ -12,7 +12,7 @@ function Follows() {
     // map through and display them (with links)
 
     return (
-        <div className='follows'>
+        <div className='page'>
             <h2>{username}'s Follows</h2>
 
         </div>

@@ -60,7 +60,7 @@ client.connect()
 
 
         app.post('/api/books', (req, res) => {
-            // console.log("books request");
+            console.log("books request");
             const collection = db.collection('books');
             collection.find().toArray((err, books) => {
                 if (err) {
@@ -75,10 +75,9 @@ client.connect()
 
         // Login endpoint
         app.post('/api/login', async (req, res) => {
-            console.log("login request");
-
+            // console.log("login request");
             const { username, password } = req.body;
-            console.log(`${username}, ${password}`);
+            // console.log(`${username}, ${password}`);
 
             db.collection('users').findOne({ username }, (err, user) => {
                 if (err) {
@@ -95,9 +94,9 @@ client.connect()
                             res.sendStatus(500);
                         } else if (result) {
                             // Passwords match, authentication successful
-                            console.log('Passwords match');
+                            console.log('Logged in successful');
 
-                            console.log(`un:${user.username}, _id:${user._id}`);
+                            // console.log(`un:${user.username}, _id:${user._id}`);
                             const token = jwt.sign({ username: user.username, _id: user._id }, jwtSecretKey);
 
                             // send status response and token
@@ -115,7 +114,7 @@ client.connect()
         app.get('/getMyBookhelf', authenticateToken, (req, res) => {
             // console.log("get my books request")
             const username = req.user
-            console.log(`getMyBookshelf:${username} (me)`);
+            // console.log(`getMyBookshelf:${username} (me)`);
 
             // find the username in the books collection
             // send the shelf (and book) data back to the user
@@ -148,7 +147,7 @@ client.connect()
         app.get('/getUserBookshelf/:username', (req, res) => {
             // console.log("get user books request");
             const username = req.params.username;
-            console.log(`getUserBookshelf:${username}`);
+            // console.log(`getUserBookshelf:${username}`);
 
             db.collection('users').findOne({ username }, (err, user) => {
                 if (err) {

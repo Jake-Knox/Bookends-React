@@ -7,6 +7,7 @@ import './shelves.scss';
 function Shelves({ shelves }) {
     return (
         <div className='shelves'>
+            <h2>Shelves</h2>
             {shelves.map(shelf => (
                 <Shelf
                     key={shelf._id}

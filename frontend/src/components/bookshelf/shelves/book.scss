@@ -1,8 +1,10 @@
 .book {
     border: 1px solid #862626;
+    box-sizing: border-box;
+
 
     height: 300px;
-    width: 100px;
+    width: 20%;
     // flex: 1;
 
     .bookFront {
@@ -20,6 +22,7 @@
             align-self: flex-end;
             width: 100%;
             height: auto;
+            border-radius: 1px;
         }
     }
 
