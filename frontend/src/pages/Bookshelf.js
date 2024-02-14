@@ -91,11 +91,12 @@ function Bookshelf() {
                 followers={bookshelfData.followers}
             />
 
-            <BookSearch />
+            {user === username ? <BookSearch /> : <div></div>}
 
             <Shelves shelves={bookshelfData.shelves} />
 
-            <AddShelf />
+            {user === username ? <AddShelf /> : <div></div>}
+
         </div>
     );
 }

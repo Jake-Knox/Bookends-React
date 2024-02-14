@@ -14,8 +14,8 @@ function Follows({ privacy, following, followers }) {
             <div>
                 {privacy === "public" ?
                     <div>
-                        <Link to={`/following/${userTest}`}> <p>Following:{following?.length || 0}</p></Link>
-                        <Link to={`/followers/${userTest}`}> <p>Followers:{followers?.length || 0}</p></Link>
+                        <Link to={`/${userTest}/follows`}> <p>Following:{following?.length || 0}</p></Link>
+                        <Link to={`/${userTest}/follows`}> <p>Followers:{followers?.length || 0}</p></Link>
                     </div>
                     :
                     <div>
