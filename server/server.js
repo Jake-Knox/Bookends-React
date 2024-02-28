@@ -72,7 +72,6 @@ client.connect()
             });
         });
 
-
         // Login endpoint
         app.post('/api/login', async (req, res) => {
             // console.log("login request");
@@ -186,7 +185,64 @@ client.connect()
         });
 
 
+        // working with mobile
 
+        const janeAustenNovels = [
+            { title: "Sense and Sensibility", description: "Two sisters navigate the complexities of love.", image: "https://cdn.penguin.co.uk/dam-assets/books/9780141439662/9780141439662-jacket-large.jpg" },
+            { title: "Pride and Prejudice", description: "A classic tale of love and social status.", image: "https://cdn.penguin.co.uk/dam-assets/books/9780141439518/9780141439518-jacket-large.jpg" },
+            { title: "Mansfield Park", description: "A young woman navigates love and morality.", image: "https://cdn.penguin.co.uk/dam-assets/books/9780141439808/9780141439808-jacket-large.jpg" },
+            { title: "Emma", description: "A well-meaning but misguided matchmaker.", image: "https://productimages.worldofbooks.com/0141439580.jpg" },
+            { title: "Northanger Abbey", description: "A young woman discovers love and mystery.", image: "https://cdn.penguin.co.uk/dam-assets/books/9780141439792/9780141439792-jacket-large.jpg" },
+            { title: "Persuasion", description: "A tale of second chances and lost love.", image: "https://cdn.penguin.co.uk/dam-assets/books/9780141439686/9780141439686-jacket-large.jpg" }
+        ];
+
+        app.get('/api/andoridTest', (req, res) => {
+            console.log("Mobile - test");
+
+            const randomIndex = Math.floor(Math.random() * janeAustenNovels.length);
+            const selectedNovel = janeAustenNovels[randomIndex];
+            const book = {
+                title: selectedNovel.title,
+                description: selectedNovel.description,
+                image: selectedNovel.image
+            };
+
+            console.log("sending response to phone")
+            res.json(book);
+        });
+
+        app.get('/api/andoridBooks', (req, res) => {
+            console.log("Mobile - books");
+
+            const books = [
+                {
+                    "title": "Sense and Sensibility",
+                    "description": "The book I am reading atm",
+                    "image": "https://cdn.penguin.co.uk/dam-assets/books/9780141439662/9780141439662-jacket-large.jpg"
+                },
+                {
+                    "title": "Pride and Prejudice",
+                    "description": "The book of hers I enjoyed the most",
+                    "image": "https://cdn.penguin.co.uk/dam-assets/books/9780141439518/9780141439518-jacket-large.jpg"
+                },
+                {
+                    "title": "Northanger Abbey",
+                    "description": "I plan on reading this last",
+                    "image": "https://cdn.penguin.co.uk/dam-assets/books/9780141439792/9780141439792-jacket-large.jpg"
+                }
+            ]
+
+            console.log("sending response to phone")
+            res.json(books);
+        });
+
+
+
+
+
+
+
+        // end of work with mobile
 
 
 
